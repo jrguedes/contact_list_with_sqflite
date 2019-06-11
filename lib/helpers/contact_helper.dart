@@ -2,11 +2,11 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 final String contactTable = 'contactTable';
-final String idColumn = 'idColumn';
-final String nameColumn = 'nameColumn';
-final String emailColumn = 'emailColumn';
-final String phoneColumn = 'phoneColumn';
-final String imgColumn = 'imgColumn';
+final String idColumn = 'id';
+final String nameColumn = 'name';
+final String emailColumn = 'email';
+final String phoneColumn = 'phone';
+final String imgColumn = 'img';
 
 class ContactHelper {
   static final ContactHelper _instance = ContactHelper.internal();
@@ -32,7 +32,8 @@ class ContactHelper {
 
     return await openDatabase(path, version: 1,
         onCreate: (Database db, int newerVersion) async {
-      await db.execute(' CREATE TABLE ($contactTable INTEGER PRIMARY KEY, '
+      await db.execute(
+          ' CREATE TABLE $contactTable ($idColumn INTEGER PRIMARY KEY, '
           '$nameColumn TEXT, $emailColumn TEXT, $phoneColumn TEXT, $imgColumn TEXT)');
     });
   }
@@ -93,6 +94,9 @@ class Contact {
   String phone;
   String img;
 
+  Contact();
+  Contact.create(this.name, this.email, this.phone, this.img);
+
   Contact.fromMap(Map map) {
     id = map[idColumn];
     name = map[nameColumn];
@@ -108,16 +112,17 @@ class Contact {
       phoneColumn: phone,
       imgColumn: img
     };
-    if (id = null) {
+    if (id == null) {
       map[idColumn] = id;
     }
     return map;
   }
 
   static List<Contact> toContactList(List<Map> mapList) {
-    List<Contact> contactList;
+    List<Contact> contactList = List<Contact>();
     for (Map map in mapList) {
-      contactList.add(Contact.fromMap(map));
+      Contact contact = Contact.fromMap(map);
+      contactList.add(contact);
     }
     return contactList;
   }

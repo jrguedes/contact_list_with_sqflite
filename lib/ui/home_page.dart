@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
             'Contact List',
             style: TextStyle(fontSize: 35, color: Colors.red[100]),
           ),
-          backgroundColor: Colors.red[400],
+          backgroundColor: Colors.red[500],
           centerTitle: true,
           actions: <Widget>[
             PopupMenuButton<OrderOptions>(
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             _showContactPage();
           },
           child: Icon(Icons.add),
-          backgroundColor: Colors.red[400],
+          backgroundColor: Colors.red[500],
         ),
         body: ListView.builder(
             padding: EdgeInsets.all(10),
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
       },
       child: SingleChildScrollView(
         child: Card(
-          color: Colors.red[400],
+          color: Colors.red[500],
           child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          fit: BoxFit.cover,
+                            fit: BoxFit.cover,
                             image: contacstList[index].img != null
                                 ? FileImage(File(contacstList[index].img))
                                 : AssetImage('images/person.png'))),
@@ -130,8 +130,8 @@ class _HomePageState extends State<HomePage> {
       } else {
         await helper.saveContact(_returnedContact);
       }
-      _showAllContacts();
     }
+    _showAllContacts();
   }
 
   void _showAllContacts() {
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(8.0),
                         child: FlatButton(
                           child: Text(
-                            'Ligar',
+                            'Call',
                             style:
                                 TextStyle(color: Colors.red[300], fontSize: 20),
                           ),
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(8.0),
                         child: FlatButton(
                           child: Text(
-                            'Editar',
+                            'Edit',
                             style:
                                 TextStyle(color: Colors.red[300], fontSize: 20),
                           ),
@@ -186,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(8.0),
                         child: FlatButton(
                           child: Text(
-                            'Excluir',
+                            'Delete',
                             style:
                                 TextStyle(color: Colors.red[300], fontSize: 20),
                           ),

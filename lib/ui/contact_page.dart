@@ -24,6 +24,7 @@ class _ContactPageState extends State<ContactPage> {
 
   @override
   void initState() {
+    super.initState();
     if (widget.contact == null) {
       _editedContact = Contact();
     } else {
@@ -45,11 +46,11 @@ class _ContactPageState extends State<ContactPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            _editedContact.name ?? 'Novo Contato',
+            _editedContact.name ?? 'New Contact',
             style: TextStyle(fontSize: 35, color: Colors.red[50]),
           ),
           centerTitle: true,
-          backgroundColor: Colors.red[300],
+          backgroundColor: Colors.red[500],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -62,7 +63,7 @@ class _ContactPageState extends State<ContactPage> {
           child: Icon(
             Icons.save,
           ),
-          backgroundColor: Colors.red[300],
+          backgroundColor: Colors.red[500],
         ),
         body: Padding(
           padding: EdgeInsets.all(10),
@@ -76,7 +77,7 @@ class _ContactPageState extends State<ContactPage> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          fit: BoxFit.cover,
+                            fit: BoxFit.cover,
                             image: _editedContact.img != null
                                 ? FileImage(File(_editedContact.img))
                                 : AssetImage('images/person.png'))),
@@ -94,7 +95,9 @@ class _ContactPageState extends State<ContactPage> {
                     });
                   },
                 ),
-                Padding(padding: EdgeInsets.only(top: 20),),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                ),
                 Form(
                     child: Column(
                   children: <Widget>[
@@ -107,8 +110,8 @@ class _ContactPageState extends State<ContactPage> {
                               TextStyle(fontSize: 22, color: Colors.black),
                           border: OutlineInputBorder()),
                       onChanged: (value) {
+                        _userEdited = true;
                         setState(() {
-                          _userEdited = true;
                           _editedContact.name = value;
                         });
                       },
@@ -125,8 +128,8 @@ class _ContactPageState extends State<ContactPage> {
                               TextStyle(fontSize: 22, color: Colors.black),
                           border: OutlineInputBorder()),
                       onChanged: (value) {
+                        _userEdited = true;
                         setState(() {
-                          _userEdited = true;
                           _editedContact.email = value;
                         });
                       },
@@ -143,8 +146,8 @@ class _ContactPageState extends State<ContactPage> {
                               TextStyle(fontSize: 22, color: Colors.black),
                           border: OutlineInputBorder()),
                       onChanged: (value) {
+                        _userEdited = true;
                         setState(() {
-                          _userEdited = true;
                           _editedContact.phone = value;
                         });
                       },
@@ -165,17 +168,17 @@ class _ContactPageState extends State<ContactPage> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text('Registro Alterado'),
-              content: Text('Deseja sair sem salvar as alterações?'),
+              title: Text('The record has been changed'),
+              content: Text('Do you want to exit without saving changes?'),
               actions: <Widget>[
                 FlatButton(
-                  child: Text('Cancelar'),
+                  child: Text('Cancel'),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
                 FlatButton(
-                  child: Text('Sim'),
+                  child: Text('Yes'),
                   onPressed: () {
                     Navigator.pop(context);
                     Navigator.pop(context);

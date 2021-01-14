@@ -1,6 +1,8 @@
 # contact_list
 
-This project create a Contact List
+This app allows you to create a Contact List with a local database using sqflite.
+
+![](contact-list.gif)
 
 ## Getting Started
 

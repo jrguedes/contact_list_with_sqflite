@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:contact_list/helpers/contact_helper.dart';
+import 'package:contact_list/widgets/contact_card.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
             'Contact List',
             style: TextStyle(fontSize: 30, color: Colors.blueGrey[50]),
           ),
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.cyan[700],
           centerTitle: true,
           actions: <Widget>[
             PopupMenuButton<OrderOptions>(
@@ -56,60 +57,17 @@ class _HomePageState extends State<HomePage> {
             _showContactPage();
           },
           child: Icon(Icons.person_add_alt_1),
-          backgroundColor: Colors.amber[600],
+          backgroundColor: Colors.amber[700],
         ),
-        body: ListView.builder(padding: EdgeInsets.all(10), itemCount: contacstList.length, itemBuilder: _contactCard));
-  }
-
-  Widget _contactCard(context, index) {
-    return GestureDetector(
-      onTap: () {
-        _showOptions(context, index);
-      },
-      child: SingleChildScrollView(
-        child: Card(
-          color: Colors.red[500],
-          child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: contacstList[index].img != null
-                                ? FileImage(File(contacstList[index].img))
-                                : AssetImage('images/person.png'))),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          contacstList[index].name ?? '',
-                          style: TextStyle(color: Colors.pink[50], fontSize: 25, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          contacstList[index].phone ?? '',
-                          style: TextStyle(fontSize: 18, color: Colors.blueGrey[50]),
-                        ),
-                        Text(
-                          contacstList[index].email ?? '',
-                          style: TextStyle(fontSize: 18, color: Colors.blueGrey[50]),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              )),
-        ),
-      ),
-    );
+        body: ListView.builder(
+            padding: EdgeInsets.all(10),
+            itemCount: contacstList.length,
+            itemBuilder: (context, index) {
+              return ContactCard(
+                contact: contacstList[index],
+                onTap: () => _showOptions(context, index),
+              );
+            }));
   }
 
   void _showContactPage({Contact contact}) async {

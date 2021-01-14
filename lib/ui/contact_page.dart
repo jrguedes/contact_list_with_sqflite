@@ -51,7 +51,7 @@ class _ContactPageState extends State<ContactPage> {
             style: TextStyle(fontSize: 30, color: Colors.blueGrey[50]),
           ),
           centerTitle: true,
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.cyan[700],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -61,11 +61,8 @@ class _ContactPageState extends State<ContactPage> {
               FocusScope.of(context).requestFocus(_nameFocus);
             }
           },
-          child: Icon(
-            Icons.save,
-            color: Colors.blueGrey[50],
-          ),
-          backgroundColor: Colors.amber[600],
+          child: Icon(Icons.save),
+          backgroundColor: Colors.amber[700],
         ),
         body: Padding(
           padding: EdgeInsets.all(10),

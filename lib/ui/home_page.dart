@@ -27,24 +27,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: Icon(Icons.group_sharp),
           title: Text(
             'Contact List',
-            style: TextStyle(fontSize: 35, color: Colors.red[100]),
+            style: TextStyle(fontSize: 30, color: Colors.blueGrey[50]),
           ),
-          backgroundColor: Colors.red[500],
+          backgroundColor: Colors.blueGrey,
           centerTitle: true,
           actions: <Widget>[
             PopupMenuButton<OrderOptions>(
               itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
-                    const PopupMenuItem<OrderOptions>(
-                      child: Text('Order A-Z'),
-                      value: OrderOptions.orderaz,
-                    ),
-                    const PopupMenuItem<OrderOptions>(
-                      child: Text('Order Z-A'),
-                      value: OrderOptions.orderza,
-                    ),
-                  ],
+                const PopupMenuItem<OrderOptions>(
+                  child: Text('Order A-Z'),
+                  value: OrderOptions.orderaz,
+                ),
+                const PopupMenuItem<OrderOptions>(
+                  child: Text('Order Z-A'),
+                  value: OrderOptions.orderza,
+                ),
+              ],
               onSelected: _orderList,
             )
           ],
@@ -54,13 +55,10 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             _showContactPage();
           },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.red[500],
+          child: Icon(Icons.person_add_alt_1),
+          backgroundColor: Colors.amber[600],
         ),
-        body: ListView.builder(
-            padding: EdgeInsets.all(10),
-            itemCount: contacstList.length,
-            itemBuilder: _contactCard));
+        body: ListView.builder(padding: EdgeInsets.all(10), itemCount: contacstList.length, itemBuilder: _contactCard));
   }
 
   Widget _contactCard(context, index) {
@@ -94,18 +92,15 @@ class _HomePageState extends State<HomePage> {
                       children: <Widget>[
                         Text(
                           contacstList[index].name ?? '',
-                          style: TextStyle(
-                              color: Colors.pink[50],
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.pink[50], fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           contacstList[index].phone ?? '',
-                          style: TextStyle(fontSize: 18, color: Colors.red[50]),
+                          style: TextStyle(fontSize: 18, color: Colors.blueGrey[50]),
                         ),
                         Text(
                           contacstList[index].email ?? '',
-                          style: TextStyle(fontSize: 18, color: Colors.red[50]),
+                          style: TextStyle(fontSize: 18, color: Colors.blueGrey[50]),
                         )
                       ],
                     ),
@@ -160,8 +155,7 @@ class _HomePageState extends State<HomePage> {
                         child: FlatButton(
                           child: Text(
                             'Call',
-                            style:
-                                TextStyle(color: Colors.red[300], fontSize: 20),
+                            style: TextStyle(color: Colors.blueGrey[300], fontSize: 20),
                           ),
                           onPressed: () {
                             launch('tel:${contacstList[index].phone}');
@@ -173,8 +167,7 @@ class _HomePageState extends State<HomePage> {
                         child: FlatButton(
                           child: Text(
                             'Edit',
-                            style:
-                                TextStyle(color: Colors.red[300], fontSize: 20),
+                            style: TextStyle(color: Colors.red[300], fontSize: 20),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -187,8 +180,7 @@ class _HomePageState extends State<HomePage> {
                         child: FlatButton(
                           child: Text(
                             'Delete',
-                            style:
-                                TextStyle(color: Colors.red[300], fontSize: 20),
+                            style: TextStyle(color: Colors.red[300], fontSize: 20),
                           ),
                           onPressed: () {
                             helper.deleteContact(contacstList[index].id);

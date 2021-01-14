@@ -39,6 +39,7 @@ class _ContactPageState extends State<ContactPage> {
 
   @override
   Widget build(BuildContext context) {
+    double _borderRadius = 30;
     return WillPopScope(
       onWillPop: () {
         return _requestPop();
@@ -47,10 +48,10 @@ class _ContactPageState extends State<ContactPage> {
         appBar: AppBar(
           title: Text(
             _editedContact.name ?? 'New Contact',
-            style: TextStyle(fontSize: 35, color: Colors.red[50]),
+            style: TextStyle(fontSize: 30, color: Colors.blueGrey[50]),
           ),
           centerTitle: true,
-          backgroundColor: Colors.red[500],
+          backgroundColor: Colors.blueGrey,
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -62,8 +63,9 @@ class _ContactPageState extends State<ContactPage> {
           },
           child: Icon(
             Icons.save,
+            color: Colors.blueGrey[50],
           ),
-          backgroundColor: Colors.red[500],
+          backgroundColor: Colors.amber[600],
         ),
         body: Padding(
           padding: EdgeInsets.all(10),
@@ -83,8 +85,7 @@ class _ContactPageState extends State<ContactPage> {
                                 : AssetImage('images/person.png'))),
                   ),
                   onTap: () {
-                    ImagePicker.pickImage(source: ImageSource.gallery)
-                        .then((file) {
+                    ImagePicker.pickImage(source: ImageSource.gallery).then((file) {
                       if (file == null) {
                         return;
                       } else {
@@ -106,9 +107,8 @@ class _ContactPageState extends State<ContactPage> {
                       focusNode: _nameFocus,
                       decoration: InputDecoration(
                           labelText: 'Name',
-                          labelStyle:
-                              TextStyle(fontSize: 22, color: Colors.black),
-                          border: OutlineInputBorder()),
+                          labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(_borderRadius)))),
                       onChanged: (value) {
                         _userEdited = true;
                         setState(() {
@@ -124,9 +124,8 @@ class _ContactPageState extends State<ContactPage> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                           labelText: 'Email',
-                          labelStyle:
-                              TextStyle(fontSize: 22, color: Colors.black),
-                          border: OutlineInputBorder()),
+                          labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(_borderRadius)))),
                       onChanged: (value) {
                         _userEdited = true;
                         setState(() {
@@ -142,9 +141,8 @@ class _ContactPageState extends State<ContactPage> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                           labelText: 'Phone',
-                          labelStyle:
-                              TextStyle(fontSize: 22, color: Colors.black),
-                          border: OutlineInputBorder()),
+                          labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(_borderRadius)))),
                       onChanged: (value) {
                         _userEdited = true;
                         setState(() {
